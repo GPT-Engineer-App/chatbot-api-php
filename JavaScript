@@ -1,0 +1,9 @@
+fetch("path_to_your_php_file.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ message: "hello" }),
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data.response));

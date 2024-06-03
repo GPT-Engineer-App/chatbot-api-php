@@ -1,0 +1,24 @@
+<?php
+header("Content-Type: application/json");
+
+// Predefined responses
+$responses = [
+    "hello" => "Hi there! How can I help you today?",
+    "how are you" => "I'm just a bot, but I'm doing great! How about you?",
+    "what is your name" => "I'm your friendly chatbot!",
+    "bye" => "Goodbye! Have a great day!",
+];
+
+// Get the message from the request
+$request = json_decode(file_get_contents("php://input"), true);
+$message = strtolower(trim($request['message']));
+
+// Find the response
+$response = "I'm sorry, I don't understand that.";
+if (array_key_exists($message, $responses)) {
+    $response = $responses[$message];
+}
+
+// Send the response
+echo json_encode(["response" => $response]);
+?>
